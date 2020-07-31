@@ -3,6 +3,57 @@ import random
 with open('sowpods.txt', 'r') as FILE:
     WORDS = FILE.read().split("\n")
 
+HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
 
 def NewWord():
     return random.choice(WORDS)
@@ -12,9 +63,9 @@ def getInput(lst):
     inpt = input("Enter your guess - ").upper()
     while True:
         if len(inpt) != 1 or inpt.isdigit() or inpt in '[@_!#$%^&*()<>?/\|}{~:]':
-            inpt = input("INVALID INPUT\nInput should be a single letter\nEnter your guess - ").upper()
+            inpt = input("\nINVALID INPUT\nInput should be a single letter\nEnter your guess - ").upper()
         elif inpt in lst:
-            inpt = input("You already guessed \"{}\"\nEnter your guess - ".format(inpt)).upper()
+            inpt = input("\nYou already guessed \"{}\"\nEnter your guess - ".format(inpt)).upper()
         else:
             return inpt
 
@@ -31,7 +82,7 @@ def game():
 
         found = False
 
-        print(screenWord + "\nlives left = {}".format(lives))
+        print(HANGMANPICS[6-lives] + "\n" + screenWord + "\nlives left = {}".format(lives))
         if lives > 0:
             if screenWord == word:
                 print("Congratulation!! You Won!")
