@@ -72,7 +72,10 @@ def getInput(lst):
 
 def game():
     word = NewWord()
-    print(word)
+
+    # print(word)
+
+    print("Welcome to the game of hangman.\n")
 
     lives = 6
     chosenLetters = []
@@ -85,7 +88,7 @@ def game():
         print(HANGMANPICS[6-lives] + "\n" + screenWord + "\nlives left = {}".format(lives))
         if lives > 0:
             if screenWord == word:
-                print("Congratulation!! You Won!")
+                print("\nCongratulation!! You Won!")
                 break
 
             inpt = getInput(chosenLetters)
@@ -98,14 +101,14 @@ def game():
             if not found:
                 lives -= 1
         else:
-            print("You lost!")
+            print("\nYou lost!")
             break
 
     if input("Play again? (y/n) ").lower() == "y":
         game()
         return
     else:
-        print("Goodbye.")
+        print("\nGoodbye.")
         return
 
 
